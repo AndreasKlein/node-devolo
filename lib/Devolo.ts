@@ -29,6 +29,8 @@ export class Devolo {
                         }
                         callback(null, self);
                     });
+                } else {
+                    callback(null, self);
                 }
             });
         })

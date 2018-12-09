@@ -30,6 +30,9 @@ var Devolo = (function () {
                         callback(null, self);
                     });
                 }
+                else {
+                    callback(null, self);
+                }
             });
         });
     }
