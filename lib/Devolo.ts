@@ -13,8 +13,7 @@ export class Devolo {
         this._options = options;
         this._api.setOptions(options);
 
-
-        var self = this;
+        const self = this;
         self.initAuth(function(err) {
             if(err) {
                 callback(err); return;
@@ -23,12 +22,14 @@ export class Devolo {
                 if(err) {
                     callback(err); return;
                 }
-                self._api.connect(function(err) {
-                    if(err) {
-                        callback(err); return;
-                    }
-                    callback(null, self);
-                });
+                if (options.useWS) {
+                    self._api.connect(function(err) {
+                        if(err) {
+                            callback(err); return;
+                        }
+                        callback(null, self);
+                    });
+                }
             });
         })
     };

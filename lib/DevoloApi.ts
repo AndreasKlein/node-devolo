@@ -1,6 +1,6 @@
 import { DevoloOptions, Zone } from './DevoloMisc';
 import { Sensor, BinarySensor, MultiLevelSensor, MeterSensor, BinarySwitch, MultiLevelSwitch } from './DevoloSensor';
-const WebSocket = require('ws');
+import WebSocket from 'ws';
 import { EventEmitter } from 'events';
 
 export class DevoloAPI {
@@ -94,7 +94,9 @@ export class DevoloAPI {
             });
 
             res.on('close', function(err) {
-                callback(err);
+                if (err && callback) {
+                    callback(err);
+                }
             });
 
         });

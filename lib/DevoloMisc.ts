@@ -11,6 +11,7 @@ export interface DevoloOptions {
     gateway: string;
     passkey: string;
     sessionid: string;
+    useWS: Boolean;
 }
 
 export class Zone {
