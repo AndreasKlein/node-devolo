@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Sensor = /** @class */ (function () {
+var Sensor = (function () {
     function Sensor(id, type) {
         this.id = id;
         this.type = type;
@@ -18,7 +18,7 @@ var Sensor = /** @class */ (function () {
     return Sensor;
 }());
 exports.Sensor = Sensor;
-var BinarySensor = /** @class */ (function (_super) {
+var BinarySensor = (function (_super) {
     __extends(BinarySensor, _super);
     function BinarySensor(id, type, state) {
         var _this = _super.call(this, id, type) || this;
@@ -28,7 +28,7 @@ var BinarySensor = /** @class */ (function (_super) {
     return BinarySensor;
 }(Sensor));
 exports.BinarySensor = BinarySensor;
-var MultiLevelSensor = /** @class */ (function (_super) {
+var MultiLevelSensor = (function (_super) {
     __extends(MultiLevelSensor, _super);
     function MultiLevelSensor(id, type, value) {
         var _this = _super.call(this, id, type) || this;
@@ -38,7 +38,7 @@ var MultiLevelSensor = /** @class */ (function (_super) {
     return MultiLevelSensor;
 }(Sensor));
 exports.MultiLevelSensor = MultiLevelSensor;
-var MeterSensor = /** @class */ (function (_super) {
+var MeterSensor = (function (_super) {
     __extends(MeterSensor, _super);
     function MeterSensor(id, type, currentValue, totalValue, sinceTime) {
         var _this = _super.call(this, id, type) || this;
@@ -50,7 +50,7 @@ var MeterSensor = /** @class */ (function (_super) {
     return MeterSensor;
 }(Sensor));
 exports.MeterSensor = MeterSensor;
-var BinarySwitch = /** @class */ (function (_super) {
+var BinarySwitch = (function (_super) {
     __extends(BinarySwitch, _super);
     function BinarySwitch(id, type, state, targetState) {
         var _this = _super.call(this, id, type, state) || this;
@@ -60,7 +60,7 @@ var BinarySwitch = /** @class */ (function (_super) {
     return BinarySwitch;
 }(BinarySensor));
 exports.BinarySwitch = BinarySwitch;
-var MultiLevelSwitch = /** @class */ (function (_super) {
+var MultiLevelSwitch = (function (_super) {
     __extends(MultiLevelSwitch, _super);
     function MultiLevelSwitch(id, type, value, targetValue, min, max) {
         var _this = _super.call(this, id, type, value) || this;
@@ -72,7 +72,7 @@ var MultiLevelSwitch = /** @class */ (function (_super) {
     return MultiLevelSwitch;
 }(MultiLevelSensor));
 exports.MultiLevelSwitch = MultiLevelSwitch;
-var RemoteControl = /** @class */ (function (_super) {
+var RemoteControl = (function (_super) {
     __extends(RemoteControl, _super);
     function RemoteControl(id, type, keyCount, keyPressed) {
         var _this = _super.call(this, id, type) || this;

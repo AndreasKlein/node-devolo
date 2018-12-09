@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DevoloApi_1 = require("./DevoloApi");
 var events_1 = require("events");
 events_1.EventEmitter.defaultMaxListeners = 100;
-var Zone = /** @class */ (function () {
+var Zone = (function () {
     function Zone(id, name, devices) {
         this.id = id;
         this.name = name;
@@ -12,7 +12,7 @@ var Zone = /** @class */ (function () {
     return Zone;
 }());
 exports.Zone = Zone;
-var Rule = /** @class */ (function () {
+var Rule = (function () {
     function Rule() {
         this.events = new events_1.EventEmitter();
     }
@@ -52,7 +52,7 @@ var Rule = /** @class */ (function () {
     return Rule;
 }());
 exports.Rule = Rule;
-var Scene = /** @class */ (function () {
+var Scene = (function () {
     function Scene() {
     }
     Scene.prototype.setParams = function (id, name, description) {

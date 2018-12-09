@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DevoloApi_1 = require("./DevoloApi");
 var DevoloSensor_1 = require("./DevoloSensor");
 var events_1 = require("events");
-var DeviceSettings = /** @class */ (function () {
+var DeviceSettings = (function () {
     function DeviceSettings() {
         this.stateSwitchable = true;
     }
@@ -23,7 +23,7 @@ var DeviceSettings = /** @class */ (function () {
     return DeviceSettings;
 }());
 exports.DeviceSettings = DeviceSettings;
-var Device = /** @class */ (function () {
+var Device = (function () {
     function Device() {
         this.events = new events_1.EventEmitter();
         this.switchCount = 0;
@@ -338,7 +338,7 @@ var Device = /** @class */ (function () {
     return Device;
 }());
 exports.Device = Device;
-var SwitchMeterDevice = /** @class */ (function (_super) {
+var SwitchMeterDevice = (function (_super) {
     __extends(SwitchMeterDevice, _super);
     function SwitchMeterDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -346,7 +346,7 @@ var SwitchMeterDevice = /** @class */ (function (_super) {
     return SwitchMeterDevice;
 }(Device));
 exports.SwitchMeterDevice = SwitchMeterDevice;
-var DoorWindowDevice = /** @class */ (function (_super) {
+var DoorWindowDevice = (function (_super) {
     __extends(DoorWindowDevice, _super);
     function DoorWindowDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -354,7 +354,7 @@ var DoorWindowDevice = /** @class */ (function (_super) {
     return DoorWindowDevice;
 }(Device));
 exports.DoorWindowDevice = DoorWindowDevice;
-var HumidityDevice = /** @class */ (function (_super) {
+var HumidityDevice = (function (_super) {
     __extends(HumidityDevice, _super);
     function HumidityDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -362,7 +362,7 @@ var HumidityDevice = /** @class */ (function (_super) {
     return HumidityDevice;
 }(Device));
 exports.HumidityDevice = HumidityDevice;
-var FloodDevice = /** @class */ (function (_super) {
+var FloodDevice = (function (_super) {
     __extends(FloodDevice, _super);
     function FloodDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -370,7 +370,7 @@ var FloodDevice = /** @class */ (function (_super) {
     return FloodDevice;
 }(Device));
 exports.FloodDevice = FloodDevice;
-var MotionDevice = /** @class */ (function (_super) {
+var MotionDevice = (function (_super) {
     __extends(MotionDevice, _super);
     function MotionDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -378,7 +378,7 @@ var MotionDevice = /** @class */ (function (_super) {
     return MotionDevice;
 }(Device));
 exports.MotionDevice = MotionDevice;
-var ThermostatValveDevice = /** @class */ (function (_super) {
+var ThermostatValveDevice = (function (_super) {
     __extends(ThermostatValveDevice, _super);
     function ThermostatValveDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -386,7 +386,7 @@ var ThermostatValveDevice = /** @class */ (function (_super) {
     return ThermostatValveDevice;
 }(Device));
 exports.ThermostatValveDevice = ThermostatValveDevice;
-var SmokeDetectorDevice = /** @class */ (function (_super) {
+var SmokeDetectorDevice = (function (_super) {
     __extends(SmokeDetectorDevice, _super);
     function SmokeDetectorDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -394,7 +394,7 @@ var SmokeDetectorDevice = /** @class */ (function (_super) {
     return SmokeDetectorDevice;
 }(Device));
 exports.SmokeDetectorDevice = SmokeDetectorDevice;
-var RoomThermostatDevice = /** @class */ (function (_super) {
+var RoomThermostatDevice = (function (_super) {
     __extends(RoomThermostatDevice, _super);
     function RoomThermostatDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -402,7 +402,7 @@ var RoomThermostatDevice = /** @class */ (function (_super) {
     return RoomThermostatDevice;
 }(Device));
 exports.RoomThermostatDevice = RoomThermostatDevice;
-var ShutterDevice = /** @class */ (function (_super) {
+var ShutterDevice = (function (_super) {
     __extends(ShutterDevice, _super);
     function ShutterDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -410,7 +410,7 @@ var ShutterDevice = /** @class */ (function (_super) {
     return ShutterDevice;
 }(Device));
 exports.ShutterDevice = ShutterDevice;
-var WallSwitchDevice = /** @class */ (function (_super) {
+var WallSwitchDevice = (function (_super) {
     __extends(WallSwitchDevice, _super);
     function WallSwitchDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -418,7 +418,7 @@ var WallSwitchDevice = /** @class */ (function (_super) {
     return WallSwitchDevice;
 }(Device));
 exports.WallSwitchDevice = WallSwitchDevice;
-var RemoteControlDevice = /** @class */ (function (_super) {
+var RemoteControlDevice = (function (_super) {
     __extends(RemoteControlDevice, _super);
     function RemoteControlDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -426,7 +426,7 @@ var RemoteControlDevice = /** @class */ (function (_super) {
     return RemoteControlDevice;
 }(Device));
 exports.RemoteControlDevice = RemoteControlDevice;
-var SirenDevice = /** @class */ (function (_super) {
+var SirenDevice = (function (_super) {
     __extends(SirenDevice, _super);
     function SirenDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -434,7 +434,7 @@ var SirenDevice = /** @class */ (function (_super) {
     return SirenDevice;
 }(Device));
 exports.SirenDevice = SirenDevice;
-var RelayDevice = /** @class */ (function (_super) {
+var RelayDevice = (function (_super) {
     __extends(RelayDevice, _super);
     function RelayDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -442,7 +442,7 @@ var RelayDevice = /** @class */ (function (_super) {
     return RelayDevice;
 }(Device));
 exports.RelayDevice = RelayDevice;
-var DimmerDevice = /** @class */ (function (_super) {
+var DimmerDevice = (function (_super) {
     __extends(DimmerDevice, _super);
     function DimmerDevice() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -450,7 +450,7 @@ var DimmerDevice = /** @class */ (function (_super) {
     return DimmerDevice;
 }(Device));
 exports.DimmerDevice = DimmerDevice;
-var RelaySwitchXDevice = /** @class */ (function (_super) {
+var RelaySwitchXDevice = (function (_super) {
     __extends(RelaySwitchXDevice, _super);
     function RelaySwitchXDevice() {
         return _super !== null && _super.apply(this, arguments) || this;

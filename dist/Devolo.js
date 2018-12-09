@@ -4,7 +4,7 @@ var DevoloMisc_1 = require("./DevoloMisc");
 var DevoloApi_1 = require("./DevoloApi");
 var DevoloDevice_1 = require("./DevoloDevice");
 var DevoloSensor_1 = require("./DevoloSensor");
-var Devolo = /** @class */ (function () {
+var Devolo = (function () {
     function Devolo(options, callback) {
         this.version = '201707161504';
         this._api = DevoloApi_1.DevoloAPI.getInstance();
@@ -21,13 +21,15 @@ var Devolo = /** @class */ (function () {
                     callback(err);
                     return;
                 }
-                self._api.connect(function (err) {
-                    if (err) {
-                        callback(err);
-                        return;
-                    }
-                    callback(null, self);
-                });
+                if (options.useWS) {
+                    self._api.connect(function (err) {
+                        if (err) {
+                            callback(err);
+                            return;
+                        }
+                        callback(null, self);
+                    });
+                }
             });
         });
     }
@@ -187,37 +189,32 @@ var Devolo = /** @class */ (function () {
                 else if (item.properties.deviceModelUID.indexOf('Dimmer') > -1) {
                     device = new DevoloDevice_1.DimmerDevice();
                 }
-                // Qubino Flush [1|2|1D] Relay | https://products.z-wavealliance.org/regions/1/categories/16/products?company=331
-                else if ((item.properties.deviceModelUID.indexOf('unk.model.On/Off:Power:Switch') > -1) && ((item.properties.prodID == '0x0052' && item.properties.prodTypeID == '0x0002') || // Qubino Flush 1 Relay
-                    (item.properties.prodID == '0x0051' && item.properties.prodTypeID == '0x0002') || // Qubino Flush 2 Relay
-                    (item.properties.prodID == '0x0053' && item.properties.prodTypeID == '0x0002'))) { // Qubino Flush 1D Relay
+                else if ((item.properties.deviceModelUID.indexOf('unk.model.On/Off:Power:Switch') > -1) && ((item.properties.prodID == '0x0052' && item.properties.prodTypeID == '0x0002') ||
+                    (item.properties.prodID == '0x0051' && item.properties.prodTypeID == '0x0002') ||
+                    (item.properties.prodID == '0x0053' && item.properties.prodTypeID == '0x0002'))) {
                     device = new DevoloDevice_1.RelaySwitchXDevice();
                 }
-                // Fibaro 2nd Gen | https://products.z-wavealliance.org/regions/1/categories/16/products?company=171
-                else if ((item.properties.deviceModelUID.indexOf('unk.model.On/Off:Power:Switch') > -1) && ((item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x0403') || // Fibaro FGS-213 2nd Gen (1x)
-                    (item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x0203'))) { // Fibaro FGS-223 2nd Gen (2x)
+                else if ((item.properties.deviceModelUID.indexOf('unk.model.On/Off:Power:Switch') > -1) && ((item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x0403') ||
+                    (item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x0203'))) {
                     device = new DevoloDevice_1.RelaySwitchXDevice();
                 }
-                // Fibaro Wall Plug | https://products.z-wavealliance.org/regions/1/categories/16/products?company=171
-                else if ((item.properties.deviceModelUID.indexOf('unk.model.On/Off:Power:Switch') > -1) && ((item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x0600') || // Fibaro FGWPE/F-101
-                    (item.properties.prodID == '0x1001' && item.properties.prodTypeID == '0x0602') || // Fibaro FGWPE/F-102
-                    (item.properties.prodID == '0x1003' && item.properties.prodTypeID == '0x0602') || // Fibaro FGWPE/F-102
-                    (item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x1801'))) { // Fibaro FGWPG-111
+                else if ((item.properties.deviceModelUID.indexOf('unk.model.On/Off:Power:Switch') > -1) && ((item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x0600') ||
+                    (item.properties.prodID == '0x1001' && item.properties.prodTypeID == '0x0602') ||
+                    (item.properties.prodID == '0x1003' && item.properties.prodTypeID == '0x0602') ||
+                    (item.properties.prodID == '0x1000' && item.properties.prodTypeID == '0x1801'))) {
                     device = new DevoloDevice_1.RelaySwitchXDevice();
                 }
-                // Fibaro 1st Gen | https://products.z-wavealliance.org/regions/1/categories/16/products?company=171
                 else if (((item.properties.deviceModelUID.indexOf('devolo.model.Unknown:Device') > -1) ||
-                    (item.properties.deviceModelUID.indexOf('unk.model.Unknown:Device') > -1)) && ((item.properties.prodID == '0x0103' && item.properties.prodTypeID == '0x0400') || // Fibaro FGS-211 1st Gen (1x)
-                    (item.properties.prodID == '0x0109' && item.properties.prodTypeID == '0x0400') || // Fibaro FGS-211 1st Gen (1x)
-                    (item.properties.prodID == '0x100a' && item.properties.prodTypeID == '0x0400') || // Fibaro FGS-212 1st Gen (1x)
-                    (item.properties.prodID == '0x1002' && item.properties.prodTypeID == '0x0402') || // Fibaro FGS-212 1st Gen (1x)
-                    (item.properties.prodID == '0x0103' && item.properties.prodTypeID == '0x0200') || // Fibaro FGS-221 1st Gen (2x)
-                    (item.properties.prodID == '0x0109' && item.properties.prodTypeID == '0x0200') || // Fibaro FGS-221 1st Gen (2x)
-                    (item.properties.prodID == '0x100a' && item.properties.prodTypeID == '0x0200') || // Fibaro FGS-222 1st Gen (2x)
-                    (item.properties.prodID == '0x1002' && item.properties.prodTypeID == '0x0202'))) { // Fibaro FGS-222 1st Gen (2x)
+                    (item.properties.deviceModelUID.indexOf('unk.model.Unknown:Device') > -1)) && ((item.properties.prodID == '0x0103' && item.properties.prodTypeID == '0x0400') ||
+                    (item.properties.prodID == '0x0109' && item.properties.prodTypeID == '0x0400') ||
+                    (item.properties.prodID == '0x100a' && item.properties.prodTypeID == '0x0400') ||
+                    (item.properties.prodID == '0x1002' && item.properties.prodTypeID == '0x0402') ||
+                    (item.properties.prodID == '0x0103' && item.properties.prodTypeID == '0x0200') ||
+                    (item.properties.prodID == '0x0109' && item.properties.prodTypeID == '0x0200') ||
+                    (item.properties.prodID == '0x100a' && item.properties.prodTypeID == '0x0200') ||
+                    (item.properties.prodID == '0x1002' && item.properties.prodTypeID == '0x0202'))) {
                     device = new DevoloDevice_1.RelaySwitchXDevice();
                 }
-                // Danfoss thermostat valve / radiator thermostat | https://products.z-wavealliance.org/regions/1/categories/10/products?company=3
                 else if (((item.properties.deviceModelUID.indexOf('devolo.model.Unknown:Device') > -1) ||
                     (item.properties.deviceModelUID.indexOf('unk.model.Unknown:Device') > -1)) && ((item.properties.prodID == '0x0004' && item.properties.prodTypeID == '0x0005') ||
                     (item.properties.prodID == '0x0003' && item.properties.prodTypeID == '0x0005') ||
@@ -225,7 +222,6 @@ var Devolo = /** @class */ (function () {
                     (item.properties.prodID == '0x0001' && item.properties.prodTypeID == '0x8005'))) {
                     device = new DevoloDevice_1.ThermostatValveDevice();
                 }
-                // Aeotec Siren Gen5 (ZW080-C15) | https://products.z-wavealliance.org/products/1136
                 else if ((item.properties.deviceModelUID.indexOf('devolo.model.Unknown:Device') > -1) && ((item.properties.prodID == '0x0050' && item.properties.prodTypeID == '0x0004'))) {
                     device = new DevoloDevice_1.SirenDevice();
                 }

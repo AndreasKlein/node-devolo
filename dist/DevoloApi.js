@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var WebSocket = require('ws');
+var ws_1 = require("ws");
 var events_1 = require("events");
-var DevoloAPI = /** @class */ (function () {
+var DevoloAPI = (function () {
     function DevoloAPI() {
         this._apiHost = 'www.mydevolo.com';
         this._apiVersion = '/v1';
@@ -73,7 +73,9 @@ var DevoloAPI = /** @class */ (function () {
                 }
             });
             res.on('close', function (err) {
-                callback(err);
+                if (err && callback) {
+                    callback(err);
+                }
             });
         });
         req.setTimeout(10000, function () {
@@ -221,7 +223,7 @@ var DevoloAPI = /** @class */ (function () {
     DevoloAPI.prototype.connect = function (callback) {
         var self = this;
         console.log('Trying to connect to socket.');
-        this._ws = new WebSocket('ws://' + this._options.centralHost + '/remote/events/?topics=com/prosyst/mbs/services/fim/FunctionalItemEvent/PROPERTY_CHANGED');
+        this._ws = new ws_1.default('ws://' + this._options.centralHost + '/remote/events/?topics=com/prosyst/mbs/services/fim/FunctionalItemEvent/PROPERTY_CHANGED');
         this._ws.on('open', function () {
             console.log('Websocket open');
             self._wsConnected = true;
@@ -282,8 +284,8 @@ var DevoloAPI = /** @class */ (function () {
         this.connect(function (err) { });
     };
     ;
-    DevoloAPI._instance = new DevoloAPI();
     return DevoloAPI;
 }());
+DevoloAPI._instance = new DevoloAPI();
 exports.DevoloAPI = DevoloAPI;
 ;
