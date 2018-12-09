@@ -1,10 +1,11 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist",
-        "allowJs": true,
-        "target": "es5"
-    },
-    "include": [
-        "./lib/**/*"
-    ]
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+    "target": "es5",
+    "module": "commonjs"
+  },
+  "include": [
+    "./lib/**/*"
+  ]
 }
